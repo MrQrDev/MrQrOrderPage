@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
+import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import Order from "./pages/Order.jsx";
+import MenuListPage from "./pages/MenuListPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +15,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/order",
-        element: <Order />,
+        path: "/menus/:storeId",
+        element: <MenuListPage />,
       },
     ],
   },

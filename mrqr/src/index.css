@@ -106,20 +106,20 @@
   font-family: "Pretendard-Black", sans-serif;
 }
 
-* {
-  margin: 0;
+body {
   padding: 0;
   box-sizing: border-box;
-  font-size: 0.625%;
+  margin: 0;
+  font-size: 62.5%;
 }
-
-body {
-  max-width: 768px;
-  min-width: 320px;
+#root {
+  max-width: 600px;
+  min-width: 370px;
   margin: 0 auto;
+  overflow-x: hidden;
+  height: 100vh;
   font-family: "Pretendard-Regular", sans-serif;
 }
-
 /* .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
