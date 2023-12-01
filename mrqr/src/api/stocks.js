@@ -1,6 +1,7 @@
 import axios from "axios";
 import { BASE_URL, IMAGE_URL } from ".";
 import { apiInstance } from "./client";
+import { useQuery } from "@tanstack/react-query";
 
 export async function getStocks(category_id) {
   try {
