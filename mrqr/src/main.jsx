@@ -3,7 +3,7 @@ import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import MenuListPage from "./pages/MenuListPage.jsx";
+import StorePage from "./pages/StorePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +15,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/menus/:storeId",
-        element: <MenuListPage />,
+        path: "/:storeId",
+        element: <StorePage />,
       },
     ],
   },

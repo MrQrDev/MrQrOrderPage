@@ -9,7 +9,7 @@ const initialMenuContextValue = {
 export const MenuContext = createContext(initialMenuContextValue);
 
 export function MenuContextProvider({ children }) {
-  const [menuData, setMenuData] = useState(null);
+  const [menuData, setMenuData] = useState("abc");
   const [cart, setCart] = useState(["a", "b", "c"]);
   return (
     <MenuContext.Provider value={{ menuData, setMenuData }}>
