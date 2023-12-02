@@ -6,7 +6,7 @@ function Home() {
   const queryStock = useQuery({ queryKey: ["stocks"], queryFn: getCategory });
   console.log(queryStock.data);
   return (
-    <div className="p-4 bg-black">
+    <div className="p-[2rem]">
       Home
       <button
         onClick={() =>

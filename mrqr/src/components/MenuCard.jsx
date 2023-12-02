@@ -1,10 +1,4 @@
 import { Link } from "react-router-dom";
-import { Stock } from "../util/types";
-import { IMAGE_URL } from "../api";
-
-interface MenuCardProps extends Stock {
-  css?: string;
-}
 
 function MenuCard({
   name,
@@ -18,7 +12,7 @@ function MenuCard({
   image_url,
   id,
   css,
-}: MenuCardProps) {
+}) {
   return (
     <Link
       to={`/store/${name}/${id}`} // 수정된 경로
