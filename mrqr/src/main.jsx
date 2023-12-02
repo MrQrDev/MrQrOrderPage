@@ -4,6 +4,7 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import StorePage from "./pages/StorePage.jsx";
+import MenuOptionPage from "./pages/MenuOptionPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/:storeId",
         element: <StorePage />,
+      },
+      {
+        path: "/:storeId/:menuId",
+        element: <MenuOptionPage />,
       },
     ],
   },
