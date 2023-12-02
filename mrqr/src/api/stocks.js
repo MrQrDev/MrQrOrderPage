@@ -1,3 +1,4 @@
+import axios from "axios";
 import { BASE_URL, IMAGE_URL } from ".";
 import { apiInstance } from "./client";
 
@@ -40,18 +41,29 @@ export async function getCategory() {
   }
 }
 
-// export async function getCategory(): Promise<StockCategory[] | any> {
-//   try {
-//     const response = await apiInstance.get(
-//       `${BASE_URL}/biz/store/category?store_id=1`
-//     );
-//     console.log(response.data);
-//     return response.data.categories;
-//   } catch (error) {
-//     console.error(error);
-//     return error;
-//   }
-// }
+export async function getStockById(stock_id) {
+  try {
+    const response = await apiInstance.get(
+      `${BASE_URL}/biz/store/stock?query=BY_ID&stock_id=${stock_id}`
+    );
+    console.log(response.data);
+    return response.data.stock;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}
+
+export async function FakegetStockById(stock_id) {
+  try {
+    const response = await axios.get(`/data/stock${stock_id}.json`);
+    console.log(response.data);
+    return response.data.stock;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}
 
 export async function addStocks(items) {
   try {

@@ -39,7 +39,6 @@ function StorePage() {
   const selectedCategoryName = queryStock?.find(
     (category) => category.id === selectedCategoryId
   )?.name;
-
   return (
     <section className="relative">
       <StoreHeader title="Store" tableNumber={1} />

@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         element: <StorePage />,
       },
       {
-        path: "/:storeId/:menuId",
+        path: "/:storeId/:stock_id",
         element: <MenuOptionPage />,
       },
     ],

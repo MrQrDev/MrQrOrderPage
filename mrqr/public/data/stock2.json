@@ -1,0 +1,75 @@
+{
+  "status": 200,
+  "message": "SUCCESS",
+  "detail_cause": "",
+  "stock": {
+    "id": 2,
+    "name": "족발",
+    "price": 40000,
+    "describe": "맛있는 족발",
+    "options": {
+      "require": [
+        {
+          "type": "select-only-one",
+          "items": [
+            {
+              "name": "소고기 1인",
+              "price": 0
+            },
+            {
+              "name": "양고기 1인",
+              "price": 0
+            }
+          ],
+          "title": "고기 선택",
+          "option_id": 1,
+          "description": ""
+        },
+        {
+          "type": "select-multi",
+          "items": [
+            {
+              "name": "청경채",
+              "price": 0
+            },
+            {
+              "name": "양배추",
+              "price": 500
+            }
+          ],
+          "title": "재료 선택",
+          "option_id": 2,
+          "description": ""
+        }
+      ],
+      "addition": [
+        {
+          "type": "select-only-one",
+          "items": [
+            {
+              "name": "1단계",
+              "price": 0
+            },
+            {
+              "name": "2단계",
+              "price": 0
+            }
+          ],
+          "title": "맵기 선택",
+          "option_id": 1,
+          "description": ""
+        }
+      ]
+    },
+    "is_signiture_menu": true,
+    "is_best_menu": false,
+    "country_of_origin": "돼지고기 : 국내산",
+    "allergy_causing_information": "",
+    "status": 0,
+    "category": {
+      "id": 1,
+      "name": "메인"
+    },
+    "image": "public\\biz\\stock-image\\1700307519376.jpg"
+  }
+}

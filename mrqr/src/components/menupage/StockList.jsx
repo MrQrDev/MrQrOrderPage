@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import StockSkeleton from "../../skeleton/skeleton_stock/StockSkeleton";
 
 function StockList({ stocksLoading, stocks, selectedCategoryName }) {
@@ -9,7 +10,8 @@ function StockList({ stocksLoading, stocks, selectedCategoryName }) {
             <StockSkeleton key={index} />
           ))
         : stocks?.map((stock) => (
-            <div
+            <Link
+              to={`${stock.id}`}
               key={stock.id}
               className="flex items-center justify-between w-full p-[2rem] bg-white border-b-2"
             >
@@ -27,7 +29,7 @@ function StockList({ stocksLoading, stocks, selectedCategoryName }) {
                 src={"/images/menuImage/example.png"}
                 alt={stock.name}
               />
-            </div>
+            </Link>
           ))}
     </div>
   );
