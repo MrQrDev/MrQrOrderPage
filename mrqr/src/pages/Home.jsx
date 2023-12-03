@@ -13,10 +13,11 @@ function Home() {
     <div className="p-[2rem]">
       Home
       <button
+        className="p-[1rem] text-[2rem] bg-blue-500 rounded-md"
         onClick={() =>
           getLogin({
-            email: "mrqr@naver.com",
-            password: "a123",
+            email: "example@test.com",
+            password: "1234",
           })
         }
       >

@@ -12,13 +12,13 @@ import StockList from "../components/menupage/StockList";
 function StorePage() {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const {
-    data: queryStock,
+    data: queryStock = [],
     isLoading: categoryLoading,
     isError: categoryError,
   } = useQuery({ queryKey: ["category"], queryFn: getCategory });
 
   const {
-    data: stocks,
+    data: stocks = [],
     isLoading: stocksLoading,
     isError: stocksError,
   } = useQuery(
@@ -35,7 +35,7 @@ function StorePage() {
   }, [queryStock]);
 
   const { menuData } = useContext(MenuContext);
-
+  console.log(menuData);
   const selectedCategoryName = queryStock?.find(
     (category) => category.id === selectedCategoryId
   )?.name;
@@ -44,13 +44,13 @@ function StorePage() {
       <StoreHeader title="Store" tableNumber={1} />
       <CategoryList
         categoryLoading={categoryLoading}
-        queryStock={queryStock}
+        queryStock={queryStock || []}
         selectedCategoryId={selectedCategoryId}
         setSelectedCategoryId={setSelectedCategoryId}
       />
       <StockList
         stocksLoading={stocksLoading}
-        stocks={stocks}
+        stocks={stocks || []}
         selectedCategoryName={selectedCategoryName}
       />
       <CartIndicator />
