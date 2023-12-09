@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getLogin } from "../api/login";
-import { getCategory, getStocks } from "../api/stocks";
+import { deleteStocks, getCategory, getStocks } from "../api/stocks";
 
 function Home() {
   const {
@@ -16,13 +16,14 @@ function Home() {
         className="p-[1rem] text-[2rem] bg-blue-500 rounded-md"
         onClick={() =>
           getLogin({
-            email: "example@test.com",
-            password: "1234",
+            email: "a6gongi@naver.com",
+            password: "123123",
           })
         }
       >
         login
       </button>
+      <button onClick={() => deleteStocks()}>delete</button>
       <button onClick={() => getCategory()}>get CATEGORY</button>
     </div>
   );

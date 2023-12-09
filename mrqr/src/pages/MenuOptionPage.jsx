@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { FakegetStockById } from "../api/stocks";
+import { getStockById } from "../api/stocks";
 import { MenuContext } from "../context/MenuListContext";
 import { cloneDeep } from "lodash";
 
@@ -18,8 +18,8 @@ function MenuOptionPage() {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["stockDetail"],
-    queryFn: () => FakegetStockById(stock_id),
+    queryKey: ["stock", stock_id],
+    queryFn: () => getStockById(stock_id),
   });
 
   useEffect(() => {
@@ -89,6 +89,7 @@ function MenuOptionPage() {
     let newStockData = cloneDeep(stock);
 
     // 필수 옵션들 업데이트
+    newStockData.price = totalPrice;
     newStockData.options.require = newStockData.options.require.map(
       (option) => {
         const selectedItemName = selectedOptions[option.option_id];
