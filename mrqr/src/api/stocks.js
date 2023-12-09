@@ -122,6 +122,7 @@ export async function orderStocks({ store_id, table_id, order_details }) {
           selected_items: opt.selected_items.map((item) => ({
             name: item.name,
             price: item.price,
+            count: 1,
           })),
         };
       });
@@ -141,10 +142,25 @@ export async function orderStocks({ store_id, table_id, order_details }) {
       table_id: table_id,
       order_details: formattedOrderDetails,
     });
-    console.log("Order response", response);
+    console.log("Order response");
     return true;
   } catch (error) {
     console.error("Order error", error);
+    return false;
+  }
+}
+
+export async function deleteStocks() {
+  const order_detail_id = 6;
+  try {
+    const response = await apiInstance.delete(`${BASE_URL}/biz/store/order`, {
+      order_detail_id: 6,
+    });
+    console.log("response", response);
+    console.log("order_detail_id", order_detail_id);
+    return true;
+  } catch (error) {
+    console.error(error);
     return false;
   }
 }
