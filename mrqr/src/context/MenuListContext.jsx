@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { tmp_menu } from "../static/mockup";
 
 // 컨텍스트의 타입 정의
 const initialMenuContextValue = {
@@ -9,7 +10,7 @@ const initialMenuContextValue = {
 export const MenuContext = createContext(initialMenuContextValue);
 
 export function MenuContextProvider({ children }) {
-  const [menuData, setMenuData] = useState([]);
+  const [menuData, setMenuData] = useState([tmp_menu]);
   const [cart, setCart] = useState([]);
   const [categories, setCategories] = useState([]);
   return (

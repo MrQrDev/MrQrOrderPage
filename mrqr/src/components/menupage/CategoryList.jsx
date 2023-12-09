@@ -22,7 +22,7 @@ function CategoryList({
         <button
           onClick={() => setSelectedCategoryId(category.id)}
           key={category.id}
-          className={`px-[1.4rem] text-[1.6rem] border-b-2 pb-[1.5rem] ${
+          className={`px-[1.4rem] shrink-0 text-[1.6rem] border-b-2 pb-[1.5rem] ${
             category.id === selectedCategoryId
               ? "border-Primary"
               : "border-transparent"

@@ -1,4 +1,4 @@
-import { LeftOutlined } from "@ant-design/icons";
+import { FaAngleLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 function Header({ title }) {
@@ -6,13 +6,17 @@ function Header({ title }) {
 
   return (
     <section
-      className={`flex z-20 items-center justify-between px-6 py-2 w-full transition-all duration-300`}
+      className={`flex z-20 items-center justify-between px-[2rem] py-[1.7rem] w-full transition-all duration-300 border-b-[1px]`}
     >
-      <LeftOutlined
-        className={`w-1/4 text-start text-2xl`}
-        onClick={() => navigate(-1)}
-      />
-      <h1 className="w-2/4 text-center text-[1.8rem]">{title}</h1>
+      <div className="w-1/4">
+        <FaAngleLeft
+          size={24}
+          className={`text-start `}
+          onClick={() => navigate(-1)}
+        />
+      </div>
+      <h1 className="w-2/4 text-center text-[1.8rem] regular">{title}</h1>
+      <div className="w-1/4" />
     </section>
   );
 }

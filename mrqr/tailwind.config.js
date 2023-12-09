@@ -15,6 +15,7 @@ export default {
         menuSection: "#F5F5F5",
         textGray: "#7C7C80",
         grayLight: "#848484",
+        grayoption: "#545456",
         Gray00: "#0F0F0F",
         LineGray: "#CECECE",
         correct: "#0E72DE",
