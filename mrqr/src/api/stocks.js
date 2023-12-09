@@ -84,3 +84,67 @@ export async function addStocks(items) {
 //   // console.log(response.data);
 //   return response.data;
 // }
+
+export async function orderStocks({ store_id, table_id, order_details }) {
+  console.log("포맷팅 주문 이전 ", order_details);
+
+  const formattedOrderDetails = order_details.map((menu) => {
+    const formattedOptions = {
+      require: [],
+      addition: [],
+    };
+
+    // Handle 'require' options
+    if (menu.options.require) {
+      formattedOptions.require = menu.options.require.map((opt) => {
+        // Assuming that only one item can be selected, so take the first one
+        const selected_item =
+          opt.selected_items.length > 0 ? opt.selected_items[0] : null;
+        return {
+          option_id: opt.option_id,
+          title: opt.title,
+          type: opt.type,
+          selected_item: selected_item
+            ? { name: selected_item.name, price: selected_item.price }
+            : null,
+        };
+      });
+    }
+
+    // Handle 'addition' options
+    if (menu.options.addition) {
+      formattedOptions.addition = menu.options.addition.map((opt) => {
+        // Here we create an array because it's a 'select-multi' type, allowing multiple selections
+        return {
+          option_id: opt.option_id,
+          title: opt.title,
+          type: opt.type,
+          selected_items: opt.selected_items.map((item) => ({
+            name: item.name,
+            price: item.price,
+          })),
+        };
+      });
+    }
+
+    return {
+      stock_id: menu.id,
+      options: formattedOptions,
+    };
+  });
+
+  console.log("Formatted order details", formattedOrderDetails);
+
+  try {
+    const response = await apiInstance.put(`${BASE_URL}/biz/store/order`, {
+      store_id: store_id,
+      table_id: table_id,
+      order_details: formattedOrderDetails,
+    });
+    console.log("Order response", response);
+    return true;
+  } catch (error) {
+    console.error("Order error", error);
+    return false;
+  }
+}
