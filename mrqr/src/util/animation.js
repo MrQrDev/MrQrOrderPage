@@ -14,3 +14,12 @@ export const shimmerAnimation = `
     position: relative;
   }
 `;
+
+export const getOrderListClasses = ({ isOpen }) => {
+  const baseClasses = "transition-opacity duration-500 ease-in-out";
+  if (isOpen) {
+    return `${baseClasses} opacity-100 visible`;
+  } else {
+    return `${baseClasses} opacity-0 invisible`;
+  }
+};
