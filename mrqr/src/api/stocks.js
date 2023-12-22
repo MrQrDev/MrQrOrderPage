@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BASE_URL, IMAGE_URL } from '.'
+import { BASE_URL } from '.'
 import { apiInstance } from './client'
 
 export async function getStocks (category_id) {
@@ -7,7 +7,7 @@ export async function getStocks (category_id) {
     const response = await apiInstance.get(
       `${BASE_URL}/biz/store/stock?query=BY_CATEGORY&category_id=${category_id}`
     )
-    console.log(response.data)
+    console.log(response.data, 'response.data', 'category_id', category_id)
     return response.data.stocks
   } catch (error) {
     console.error(error)
@@ -28,12 +28,12 @@ export async function getAllStocks (store_id) {
   }
 }
 
-export async function getCategory () {
+export async function getCategory (store_id) {
   try {
     const response = await apiInstance.get(
-      `${BASE_URL}/biz/store/category?store_id=1`
+      `${BASE_URL}/biz/store/category?store_id=${store_id}`
     )
-    console.log(response.data)
+    console.log(response.data, 'CATEGORY LIST +____ ')
     return response.data.categories
   } catch (error) {
     console.error(error)
@@ -46,7 +46,7 @@ export async function getStockById (stock_id) {
     const response = await apiInstance.get(
       `${BASE_URL}/biz/store/stock?query=BY_ID&stock_id=${stock_id}`
     )
-    console.log(response.data)
+    console.log('getStockById', JSON.stringify(response.data))
     return response.data.stock
   } catch (error) {
     console.error(error)
@@ -111,10 +111,8 @@ export async function orderStocks ({ store_id, table_id, order_details }) {
       })
     }
 
-    // Handle 'addition' options
     if (menu.options.addition) {
       formattedOptions.addition = menu.options.addition.map(opt => {
-        // Here we create an array because it's a 'select-multi' type, allowing multiple selections
         return {
           option_id: opt.option_id,
           title: opt.title,
