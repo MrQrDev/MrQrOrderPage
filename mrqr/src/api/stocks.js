@@ -85,80 +85,19 @@ export async function addStocks (items) {
 //   return response.data;
 // }
 
-export async function orderStocks ({ store_id, table_id, order_details }) {
-  console.log('포맷팅 주문 이전 ', order_details)
-
-  const formattedOrderDetails = order_details.map(menu => {
-    const formattedOptions = {
-      require: [],
-      addition: []
-    }
-
-    // Handle 'require' options
-    if (menu.options.require) {
-      formattedOptions.require = menu.options.require.map(opt => {
-        // Assuming that only one item can be selected, so take the first one
-        const selected_item =
-          opt.selected_items.length > 0 ? opt.selected_items[0] : null
-        return {
-          option_id: opt.option_id,
-          title: opt.title,
-          type: opt.type,
-          selected_item: selected_item
-            ? { name: selected_item.name, price: selected_item.price, count: 1 }
-            : null
-        }
-      })
-    }
-
-    if (menu.options.addition) {
-      formattedOptions.addition = menu.options.addition.map(opt => {
-        return {
-          option_id: opt.option_id,
-          title: opt.title,
-          type: opt.type,
-          selected_items: opt.selected_items.map(item => ({
-            name: item.name,
-            price: item.price,
-            count: 1
-          }))
-        }
-      })
-    }
-
-    return {
-      stock_id: menu.id,
-      options: formattedOptions
-    }
-  })
-
-  console.log('Formatted order details', JSON.stringify(formattedOrderDetails))
-
-  // try {
-  //   const response = await apiInstance.put(`${BASE_URL}/biz/store/order`, {
-  //     store_id: store_id,
-  //     table_id: table_id,
-  //     order_details: formattedOrderDetails,
-  //   });
-  //   console.log("Order response");
-  //   return true;
-  // } catch (error) {
-  //   console.error("Order error", error);
-  //   return false;
-  // }
-}
-
-export async function deleteStocks () {
-  const order_detail_id = 6
+export async function orderStocks ({ order }) {
+  console.log('포맷팅 주문 이전 ', order)
+  order.store_id = Number(order.store_id)
+  order.table_id = Number(order.table_id)
+  console.log(JSON.stringify(order))
   try {
-    const response = await apiInstance.delete(`${BASE_URL}/biz/store/order`, {
-      order_detail_id: 6
+    const response = await apiInstance.put(`${BASE_URL}/biz/store/order`, {
+      ...order
     })
-    console.log('response', response)
-    console.log('order_detail_id', order_detail_id)
+    console.log('Order response:', response.data) // 여기서 response.data는 실제 응답 데이터에 따라 다를 수 있습니다.
     return true
   } catch (error) {
-    console.error(error)
+    console.error('Order error', error)
     return false
   }
 }

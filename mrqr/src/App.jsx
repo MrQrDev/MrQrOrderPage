@@ -30,19 +30,15 @@ function App () {
               <BrowserRouter>
                 <Routes>
                   <Route path='/' element={<Home />} />
-                  <Route path='/:storeId' element={<StorePage />} />
-                  <Route
-                    path='/:storeId/:stock_id'
-                    element={<MenuOptionPage />}
-                  />
-                  <Route
-                    path='/:storeId/:tableNumber/cart'
-                    element={<CartOrderPage />}
-                  />
-                  <Route
-                    path='/:storeId/:tableNumber/order'
-                    element={<OrderPage />}
-                  />
+                  <Route path='/:storeId'>
+                    <Route index element={<StorePage />} />
+                    <Route path=':stock_id' element={<MenuOptionPage />} />
+                    <Route
+                      path=':tableNumber/cart'
+                      element={<CartOrderPage />}
+                    />
+                    <Route path=':tableNumber/order' element={<OrderPage />} />
+                  </Route>
                   <Route path='*' element={<Outlet />} />
                 </Routes>
               </BrowserRouter>

@@ -9,11 +9,19 @@ import CartIndicator from '../components/CartIndicator'
 import CategoryList from '../components/menupage/CategoryList'
 import StockList from '../components/menupage/StockList'
 import { useParams } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { CartAtom } from '../recoil/CartAtom'
 
 function StorePage () {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null)
   const { storeId } = useParams()
-  console.log(storeId)
+  const setCartItem = useSetRecoilState(CartAtom)
+  useEffect(() => {
+    setCartItem(prevCartItem => ({
+      ...prevCartItem,
+      store_id: storeId
+    }))
+  }, [storeId, setCartItem])
   const {
     data: queryStock,
     isLoading: categoryLoading,
@@ -29,15 +37,12 @@ function StorePage () {
       queryFn: () => getStocks(selectedCategoryId)
     }
   )
-  getStockById(3)
   useEffect(() => {
     if (queryStock && queryStock.length > 0) {
       setSelectedCategoryId(queryStock[0].id)
     }
   }, [queryStock])
 
-  // const { menuData } = useContext(MenuContext)
-  // console.log(menuData)
   const selectedCategoryName = queryStock?.find(
     category => category.id === selectedCategoryId
   )?.name

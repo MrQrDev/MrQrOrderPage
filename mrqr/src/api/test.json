@@ -1,40 +1,25 @@
 {
-  "json": {
-    "id": 3,
-    "name": "김치돼지찜",
-    "price": 24000,
-    "describe": "맛있는 김치돼지찜",
-    "is_signiture_menu": true,
-    "is_best_menu": false,
-    "status": 0,
-    "options": {
-      "require": [],
-      "addition": [
-        {
-          "id": 15,
-          "name": "맵기",
-          "required": false,
-          "select_multiple": false,
-          "options": [
-            {
-              "id": "915de46b-b829-431d-aae0-4e22b1a72972",
-              "name": "1단계",
-              "price": "666"
-            },
-            {
-              "id": "2caa9cf9-5d20-408c-a4ee-244b2e3bb48d",
-              "name": "2단계",
-              "price": "6699"
-            },
-            {
-              "id": "be88e16f-70bf-4297-ab00-e51488f1d725",
-              "name": "3단계",
-              "price": "688999"
-            }
-          ]
-        }
-      ]
-    },
-    "image_url": ""
-  }
+  "store_id": 1,
+  "table_id": 1,
+  "order_details": [
+    {
+      "stock_id": 3,
+      "count": 1,
+      "options": {
+        "require": [],
+        "addition": [
+          {
+            "type": "selected-only-one",
+            "selected_items": [
+              {
+                "name": "3단계",
+                "price": "6889",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
