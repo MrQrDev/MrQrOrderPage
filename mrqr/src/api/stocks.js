@@ -89,6 +89,7 @@ export async function orderStocks ({ order }) {
   console.log('포맷팅 주문 이전 ', order)
   order.store_id = Number(order.store_id)
   order.table_id = Number(order.table_id)
+  order.order_details = [...order.order_details]
   console.log(JSON.stringify(order))
   try {
     const response = await apiInstance.put(`${BASE_URL}/biz/store/order`, {

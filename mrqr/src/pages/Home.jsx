@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getLogin } from '../api/login'
-import { deleteStocks, getCategory, getStocks } from '../api/stocks'
+import { getCategory, getStocks } from '../api/stocks'
 
 function Home () {
   const {
@@ -23,7 +23,6 @@ function Home () {
       >
         login
       </button>
-      <button onClick={() => deleteStocks()}>delete</button>
       <button onClick={() => getCategory()}>get CATEGORY</button>
     </div>
   )

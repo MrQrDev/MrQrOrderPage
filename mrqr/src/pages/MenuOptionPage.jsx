@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getStockById } from '../api/stocks'
-import { cloneDeep, replace, set } from 'lodash'
 import '../styles/check.css'
 import { useRecoilState } from 'recoil'
 import { CartAtom } from '../recoil/CartAtom'
@@ -35,15 +34,14 @@ function MenuOptionPage () {
   }, [selectedOptions, additionalOptions, stock])
   // 옵션 추후 수정 필요
   const handleSelectOption = (isRequire, isMulti, item) => {
-    console.log(item)
+    console.log('item', item)
     const newOption = {
-      type: isMulti ? 'select-multi' : 'select-only-one',
+      option_id: item.id,
       selected_items: [{ name: item.name, price: item.price, count: 1 }]
     }
 
     setSelectedOptions(prevOptions => {
       let targetArray = isRequire ? prevOptions.require : prevOptions.addition
-
       // isMulti가 아닐 경우, 동일한 범주의 기존 옵션 제거
       if (!isMulti) {
         targetArray = targetArray.filter(
@@ -114,25 +112,34 @@ function MenuOptionPage () {
 
   const handleFormSubmit = e => {
     e.preventDefault()
+    const options = [
+      ...(Array.isArray(selectedOptions.require) &&
+      selectedOptions.require.length > 0
+        ? selectedOptions.require
+        : []),
+      ...(Array.isArray(selectedOptions.addition) &&
+      selectedOptions.addition.length > 0
+        ? selectedOptions.addition
+        : [])
+    ]
 
     // 선택한 옵션들을 주문 상세에 포함
     const newOrderDetails = {
+      type: 'order',
       stock_id: stock.id,
       price: totalPrice,
       count: 1,
       name: stock.name,
-      options: {
-        require: selectedOptions.require,
-        addition: selectedOptions.addition
-      }
+      options: options
     }
+    console.log('newOrderDetails', newOrderDetails)
     // 장바구니 상태 업데이트
     setCartItem(prevCartItem => ({
       ...prevCartItem,
       order_details: [...prevCartItem.order_details, newOrderDetails]
     }))
 
-    console.log(newOrderDetails)
+    console.log('newOrderDetails', newOrderDetails)
     console.log(selectedOptions)
     navigate(`/${storeId}`, { replace: true })
   }

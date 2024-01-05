@@ -22,26 +22,21 @@ function CategoryList ({
 
   return (
     <div className='px-[1.5rem]'>
-      <Swiper
-        spaceBetween={10} // 슬라이드 간 간격 조정
-        slidesPerView={'auto'} // 슬라이드 크기 자동 조정
-        freeMode={true} // 자유로운 스크롤 모드 활성화
-      >
+      <div className='grid grid-cols-4'>
         {queryStock.map(category => (
-          <SwiperSlide key={category.id} style={{ width: 'auto' }}>
-            <button
-              onClick={() => setSelectedCategoryId(category.id)}
-              className={`shrink-0 text-[1.6rem] py-[1.5rem] px-[1.4rem] border-b-2 ${
-                category.id === selectedCategoryId
-                  ? 'border-Primary'
-                  : 'border-transparent'
-              }`}
-            >
-              {category.name}
-            </button>
-          </SwiperSlide>
+          <button
+            key={category.id}
+            onClick={() => setSelectedCategoryId(category.id)}
+            className={`shrink-0 text-[1.6rem] py-[1rem] border-b-2 ${
+              category.id === selectedCategoryId
+                ? 'border-Primary'
+                : 'border-transparent'
+            }`}
+          >
+            {category.name}
+          </button>
         ))}
-      </Swiper>
+      </div>
     </div>
   )
 }
