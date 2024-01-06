@@ -54,10 +54,8 @@ function MenuOptionPage () {
         )
       )
       if (existingOptionIndex !== -1) {
-        // 이미 존재하는 경우, count만 증가
         targetArray[existingOptionIndex].selected_items[0].count += 1
       } else {
-        // 존재하지 않는 경우, 새로운 옵션 추가
         targetArray.push(newOption)
       }
 
