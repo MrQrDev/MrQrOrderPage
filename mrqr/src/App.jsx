@@ -1,5 +1,4 @@
 import { Outlet, Routes, Route, BrowserRouter } from 'react-router-dom'
-import { MenuContextProvider } from './context/MenuListContext'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { CookiesProvider } from 'react-cookie'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -18,35 +17,30 @@ function App () {
   const queryClient = new QueryClient()
   return (
     <Suspense fallback={<SyncLoader color='#36d7b7' />}>
-      <QueryClientProvider client={queryClient}>
-        <ErrorBoundary
-          FallbackComponent={ErrorFallback}
-          onReset={() => {
-            queryClient.resetQueries()
-          }}
-        >
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={() => {
+          queryClient.resetQueries()
+        }}
+      >
+        <QueryClientProvider client={queryClient}>
           <CookiesProvider>
-            <MenuContextProvider>
-              <BrowserRouter>
-                <Routes>
-                  <Route path='/' element={<Home />} />
-                  <Route path='/:storeId'>
-                    <Route index element={<StorePage />} />
-                    <Route path=':stock_id' element={<MenuOptionPage />} />
-                    <Route
-                      path=':tableNumber/cart'
-                      element={<CartOrderPage />}
-                    />
-                    <Route path=':tableNumber/order' element={<OrderPage />} />
-                  </Route>
-                  <Route path='*' element={<Outlet />} />
-                </Routes>
-              </BrowserRouter>
-              <ReactQueryDevtools initialIsOpen={false} />
-            </MenuContextProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/:storeId'>
+                  <Route index element={<StorePage />} />
+                  <Route path=':stock_id' element={<MenuOptionPage />} />
+                  <Route path=':tableNumber/cart' element={<CartOrderPage />} />
+                  <Route path=':tableNumber/order' element={<OrderPage />} />
+                </Route>
+                <Route path='*' element={<Outlet />} />
+              </Routes>
+            </BrowserRouter>
+            <ReactQueryDevtools initialIsOpen={false} />
           </CookiesProvider>
-        </ErrorBoundary>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </ErrorBoundary>
     </Suspense>
   )
 }

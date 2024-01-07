@@ -79,12 +79,6 @@ export async function addStocks (items) {
   }
 }
 
-// export async function tmpGetMenus(): Promise<Stock[]> {
-//   const response = await axios.get(`/data/fake.json`);
-//   // console.log(response.data);
-//   return response.data;
-// }
-
 export async function orderStocks ({ order }) {
   console.log('포맷팅 주문 이전 ', order)
   order.store_id = Number(order.store_id)
